@@ -24,6 +24,7 @@ npm run dev       # demo app at http://localhost:5173
 | `npm run build` | Typecheck + production build |
 | `FC_RUNS=2000 npm test` | Hunt harder: 2,000 fast-check runs per property (default 100) |
 | `FC_SEED=<seed> npm test` | Replay a fast-check failure exactly (seed is printed in the failure) |
+| `npm run docs:build` | Rebuild the onboarding PDFs in `docs/` (see below) |
 
 Versions used: maplibre-gl 6.13, react-map-gl 8.1, React 19, Vite 8, Vitest 5, fast-check 4, Turf 7, TypeScript 7.
 
@@ -61,7 +62,25 @@ test/
   golden.test.ts          raw samples → GeoJSON snapshots (changes show up in review)
 docs/
   MapLibre-React-Onboarding.pdf
+  fast-check-onboarding.pdf   property-based testing with fast-check, using this repo's tests
+  turf-onboarding.pdf         geospatial operations with Turf.js: recipes, gotchas, testing
+  src/*.md, src/style.css     sources of the two guides above
+  examples/fast-check/*.ts    every code snippet in the fast-check guide (run by npm test)
+  examples/turf/*.ts          every code snippet in the Turf guide (run by npm test)
+scripts/
+  build-docs.ts               docs/src/*.md + snippets -> PDF (npm run docs:build)
 ```
+
+### Rebuilding the guides
+
+The guides never contain copy-pasted code. A line like `@snippet docs/examples/turf/04-recipes.test.ts#geofence` in `docs/src/*.md` is replaced at build time with the code between `// #region geofence` and `// #endregion` in that file (`#fn:name` takes an exported function, no `#` the whole file). Snippets also come straight from `test/` and `src/`. Because `docs/examples` is part of `npm test`, every snippet in the PDFs compiles and passes.
+
+```bash
+npx playwright install chromium-headless-shell   # once
+npm run docs:build                               # both guides; or: npm run docs:build -- turf
+```
+
+`docs:build` needs Node 22.18+ (it runs TypeScript directly) and prints a warning for any snippet line too long to fit the page. Commit the regenerated PDFs together with their sources.
 
 ## How the tests are layered
 

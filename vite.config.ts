@@ -7,9 +7,12 @@ export default defineConfig({
   plugins: [react()],
   // MapLibre v6's worker is an ES module worker
   worker: { format: 'es' },
+  // #region test-config
   test: {
     environment: 'node',
-    include: ['test/**/*.test.ts'],
+    // docs/examples holds every code snippet in the onboarding PDFs, so the guides stay tested
+    include: ['test/**/*.test.ts', 'docs/examples/**/*.test.ts'],
     setupFiles: ['test/setup.ts'],
   },
+  // #endregion
 });
