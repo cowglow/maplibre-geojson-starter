@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 211234560,
+      "geometry": { "type": "Point", "coordinates": [9.9705, 53.544] },
+      "properties": { "mmsi": 211234560, "imo": 9301234, "name": "ELBE TRADER", "shipType": 70, "navStatus": 0, "sogKt": 11.2, "cogDeg": 285.0, "headingDeg": 284, "destination": "DEHAM", "timestamp": "2026-10-06T19:34:58Z" }
+    },
+    {
+      "type": "Feature",
+      "id": 244820000,
+      "geometry": { "type": "Point", "coordinates": [4.052, 51.981] },
+      "properties": { "mmsi": 244820000, "name": "NOORD STAR", "shipType": 80, "navStatus": 1, "sogKt": 0.1, "cogDeg": null, "headingDeg": null, "timestamp": "2026-10-06T19:33:20Z" }
+    }
+  ]
+}

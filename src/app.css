@@ -1,0 +1,12 @@
+:root { font-family: system-ui, sans-serif; color: #18212b; background: #f6f4ee; }
+body { margin: 0; }
+.app { display: flex; flex-direction: column; height: 100vh; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 12px; border-bottom: 1px solid #c9c4b8; align-items: center; }
+.tabs h1 { font-size: 16px; margin: 0 12px 0 0; }
+.tabs button { font: inherit; padding: 8px 12px; border: 1px solid #c9c4b8; background: #fff; border-radius: 6px; cursor: pointer; min-height: 40px; }
+.tabs button[aria-pressed='true'] { background: #18212b; color: #fff; border-color: #18212b; }
+.stage { flex: 1; position: relative; min-height: 0; }
+.panel { position: absolute; top: 10px; left: 10px; z-index: 1; background: #fff; border: 1px solid #c9c4b8; border-radius: 8px; padding: 10px 12px; font-size: 14px; max-width: 300px; box-shadow: 0 2px 8px rgb(0 0 0 / 0.08); }
+.panel label { display: flex; gap: 8px; align-items: center; padding: 3px 0; }
+.panel p { margin: 6px 0 0; color: #3b4652; font-size: 13px; }
+.props { font: 12px/1.45 ui-monospace, monospace; margin: 0; max-height: 240px; overflow: auto; }

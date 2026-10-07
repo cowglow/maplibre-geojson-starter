@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.58, 48.14], [0.12, 54.8], [-14.6, 59.3], [-31.9, 61.2], [-50.1, 59.9], [-64.3, 55.8], [-73.98, 40.75]]
+      },
+      "properties": { "kind": "path", "txCall": "DL1ABC", "rxCall": "W2XYZ", "frequencyKHz": 14074.0, "band": "20m", "mode": "FT8", "snrDb": -12, "distanceKm": 6480 }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "MultiLineString",
+        "coordinates": [
+          [[139.69, 35.69], [160.0, 42.1], [180.0, 46.3]],
+          [[-180.0, 46.3], [-160.0, 48.9], [-122.42, 37.77]]
+        ]
+      },
+      "properties": { "kind": "path", "txCall": "JA1AAA", "rxCall": "K6BBB", "frequencyKHz": 21025.0, "band": "15m", "mode": "CW", "snrDb": 18 }
+    },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [11.58, 48.14] }, "properties": { "kind": "tx", "call": "DL1ABC" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-73.98, 40.75] }, "properties": { "kind": "rx", "call": "W2XYZ" } }
+  ]
+}

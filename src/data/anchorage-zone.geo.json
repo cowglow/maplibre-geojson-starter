@@ -1,0 +1,12 @@
+{
+  "type": "Feature",
+  "id": 4001,
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [[3.98, 51.96], [4.07, 51.96], [4.07, 52.005], [3.98, 52.005], [3.98, 51.96]],
+      [[4.01, 51.975], [4.01, 51.99], [4.04, 51.99], [4.04, 51.975], [4.01, 51.975]]
+    ]
+  },
+  "properties": { "zoneId": "anchorage-4a", "kind": "anchorage", "exclusion": "cable area", "alertOnEntry": true }
+}

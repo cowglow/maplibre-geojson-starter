@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [11.582, 48.1351] },
+      "properties": { "stationId": "rx-wst-01", "role": "receiver", "band": "VHF", "frequencyMHz": 156.8, "status": "online" }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [11.95, 48.1351], [11.842, 48.318], [11.582, 48.3851], [11.322, 48.318], [11.214, 48.1351],
+          [11.322, 47.952], [11.582, 47.8851], [11.842, 47.952], [11.95, 48.1351]
+        ]]
+      },
+      "properties": { "stationId": "rx-wst-01", "kind": "coverage", "rangeKm": 28 }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "LineString", "coordinates": [[11.582, 48.1351], [11.895, 48.29]] },
+      "properties": { "stationId": "rx-wst-01", "kind": "bearing", "bearingDeg": 54.5, "frequencyMHz": 145.5, "timestamp": "2026-10-06T19:35:02Z" }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "now": 1791315312.0,
+  "aircraft": [
+    { "hex": "3c6a4f", "flight": "DLH4KT  ", "alt_baro": 4100, "alt_geom": 4325, "gs": 182, "track": 262.4, "baro_rate": 1408, "squawk": "1000", "category": "A3", "lat": 48.3538, "lon": 11.7861, "seen": 0.4, "seen_pos": 0.4 },
+    { "hex": "4ca7b3", "flight": "EIN52P  ", "alt_baro": 35000, "alt_geom": 35475, "gs": 461, "track": 301.0, "baro_rate": 0, "squawk": "2341", "category": "A3", "lat": 48.1905, "lon": 11.4127, "seen": 2.1, "seen_pos": 2.1 },
+    { "hex": "3c4b26", "flight": "DLH9AB  ", "alt_baro": "ground", "gs": 12, "track": 85.0, "squawk": "1000", "category": "A3", "lat": 48.3532, "lon": 11.7752, "seen": 1.0, "seen_pos": 1.0 },
+    { "hex": "3e1234", "flight": "MEDIC1  ", "alt_baro": 2800, "gs": 120, "track": 15.0, "squawk": "7700", "category": "A7", "lat": 48.07, "lon": 11.62, "seen": 0.8, "seen_pos": 0.8 },
+    { "hex": "~2a1f00", "alt_baro": 9000, "gs": 250, "track": 190.0, "lat": 48.25, "lon": 11.95, "seen": 95, "seen_pos": 95 },
+    { "hex": "3c55aa", "alt_baro": 12000, "squawk": "4521", "seen": 3.0 }
+  ]
+}

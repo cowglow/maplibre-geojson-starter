@@ -1,0 +1,5 @@
+[
+  { "tx": [11.58, 48.14], "rx": [-73.98, 40.75], "txCall": "DL1ABC", "rxCall": "W2XYZ", "frequencyKHz": 14074.0, "mode": "FT8", "snrDb": -12, "timestamp": "2026-10-06T19:30:15Z" },
+  { "tx": [139.69, 35.69], "rx": [-122.42, 37.77], "txCall": "JA1AAA", "rxCall": "K6BBB", "frequencyKHz": 21025.0, "mode": "CW", "snrDb": 18, "timestamp": "2026-10-06T19:31:02Z" },
+  { "tx": [11.58, 48.14], "rx": [18.42, -33.92], "txCall": "DL1ABC", "rxCall": "ZS1CCC", "frequencyKHz": 7074.0, "mode": "FT8", "snrDb": -5, "timestamp": "2026-10-06T19:32:44Z" }
+]

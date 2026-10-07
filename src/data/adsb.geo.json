@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [11.7861, 48.3538] },
+      "properties": { "icao24": "3c6a4f", "callsign": "DLH4KT", "squawk": "1000", "altBaroFt": 4100, "groundSpeedKt": 182, "trackDeg": 262.4, "verticalRateFpm": 1408, "onGround": false, "category": "A3" }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [11.4127, 48.1905] },
+      "properties": { "icao24": "4ca7b3", "callsign": "EIN52P", "squawk": "2341", "altBaroFt": 35000, "groundSpeedKt": 461, "trackDeg": 301.0, "verticalRateFpm": 0, "onGround": false, "category": "A3" }
+    }
+  ]
+}

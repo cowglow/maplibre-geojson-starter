@@ -1,0 +1,7 @@
+node_modules
+dist
+/.idea/.gitignore
+/.idea/maplibre-geojson-starter.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
