@@ -1,5 +1,8 @@
 # MapLibre + GeoJSON starter
 
+[![Test](https://github.com/cowglow/maplibre-geojson-starter/actions/workflows/test.yml/badge.svg)](https://github.com/cowglow/maplibre-geojson-starter/actions/workflows/test.yml)
+[![Deploy to GitHub Pages](https://github.com/cowglow/maplibre-geojson-starter/actions/workflows/deploy.yml/badge.svg)](https://cowglow.github.io/maplibre-geojson-starter/)
+
 Typed GeoJSON factories for **ADS-B, AIS, radio and HF** data, tested three ways (example tests, fast-check property tests, golden snapshots), plus a MapLibre + React demo app with every example from the onboarding guide.
 
 ## Quick start
