@@ -27,6 +27,9 @@ export function App() {
             {TABS[k].label}
           </button>
         ))}
+        <a className="tabs-link" href={`${import.meta.env.BASE_URL}guides/`}>
+          Guides &amp; tests
+        </a>
       </nav>
       <main className="stage">
         <Component key={tab} />

@@ -13,6 +13,10 @@ export default defineConfig({
     // docs/examples holds every code snippet in the onboarding PDFs, so the guides stay tested
     include: ['test/**/*.test.ts', 'docs/examples/**/*.test.ts'],
     setupFiles: ['test/setup.ts'],
+    // The deploy workflow sets TEST_REPORT_DIR to publish an HTML report next to the demo
+    reporters: process.env.TEST_REPORT_DIR
+      ? ['default', ['html', { outputDir: process.env.TEST_REPORT_DIR }]]
+      : ['default'],
   },
   // #endregion
 });

@@ -29,6 +29,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^6.1.2",
+    "@vitest/ui": "^5.0.3",
     "dejavu-fonts-ttf": "^2.37.3",
     "fast-check": "^4.10.2",
     "marked": "^18.1.0",

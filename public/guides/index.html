@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guides and tests · MapLibre + GeoJSON starter</title>
+    <!-- The deploy workflow copies docs/*.pdf next to this page and the test report to ../tests/ -->
+    <style>
+      :root { --ink: #18212b; --muted: #3b4652; --teal: #0b6670; --rule: #c9c4b8; --tint: #f4f3ef; }
+      body {
+        margin: 0;
+        font: 16px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif;
+        color: var(--ink);
+        background: #fff;
+      }
+      main { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
+      .kicker { font: 12px ui-monospace, monospace; letter-spacing: 0.12em; color: var(--teal); margin: 0; }
+      h1 { font-size: 32px; line-height: 1.2; margin: 4px 0 8px; }
+      .lede { color: var(--muted); margin: 0 0 24px; padding-bottom: 20px; border-bottom: 2px solid var(--ink); }
+      h2 { font-size: 18px; margin: 28px 0 10px; }
+      ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+      a.card {
+        display: block;
+        padding: 14px 16px;
+        border: 1px solid var(--rule);
+        border-left: 4px solid var(--teal);
+        background: var(--tint);
+        color: inherit;
+        text-decoration: none;
+      }
+      a.card:hover, a.card:focus-visible { border-color: var(--teal); }
+      a.card strong { display: block; }
+      a.card span { color: var(--muted); font-size: 14px; }
+      footer { margin-top: 32px; font-size: 14px; color: var(--muted); }
+      footer a { color: var(--teal); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="kicker">TEAM ONBOARDING</p>
+      <h1>Guides and tests</h1>
+      <p class="lede">
+        Onboarding guides for the MapLibre + GeoJSON starter, and the test report from the build
+        that deployed this site. Every code snippet in the guides runs in that test suite.
+      </p>
+
+      <h2>Guides (PDF)</h2>
+      <ul>
+        <li>
+          <a class="card" href="MapLibre-React-Onboarding.pdf">
+            <strong>MapLibre GL JS in React + TypeScript</strong>
+            <span>The mental model, react-map-gl and the raw API, and the pitfalls that cost people days.</span>
+          </a>
+        </li>
+        <li>
+          <a class="card" href="fast-check-onboarding.pdf">
+            <strong>Property-based testing with fast-check</strong>
+            <span>How we test the GeoJSON factories, and the bugs fast-check found.</span>
+          </a>
+        </li>
+        <li>
+          <a class="card" href="turf-onboarding.pdf">
+            <strong>Geospatial operations with Turf.js</strong>
+            <span>Coverage, DF cross-fixes, geofences, great-circle paths and the gotchas.</span>
+          </a>
+        </li>
+      </ul>
+
+      <h2>Tests</h2>
+      <ul>
+        <li>
+          <a class="card" href="../tests/">
+            <strong>Test report</strong>
+            <span>
+              Every test from the build that deployed this site. Test names read as the domain rules.
+              A report only ever shows passing tests: if a test fails, the site isn't deployed.
+            </span>
+          </a>
+        </li>
+      </ul>
+
+      <footer>
+        <a href="../">Back to the demo</a> ·
+        <a href="https://github.com/cowglow/maplibre-geojson-starter">Source on GitHub</a> ·
+        <a href="https://github.com/cowglow/maplibre-geojson-starter/actions/workflows/test.yml">Latest test runs</a>
+      </footer>
+    </main>
+  </body>
+</html>

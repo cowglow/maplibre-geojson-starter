@@ -24,12 +24,16 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm test
       - id: pages
         uses: actions/configure-pages@v6
       - run: npm run build
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+      # Runs the tests once: a failure stops the deploy, a pass publishes the report at /tests/
+      - run: npm test
+        env:
+          TEST_REPORT_DIR: dist/tests
+      - run: cp docs/*.pdf dist/guides/
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

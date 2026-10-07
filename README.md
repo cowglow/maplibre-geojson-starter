@@ -5,6 +5,8 @@
 
 Typed GeoJSON factories for **ADS-B, AIS, radio and HF** data, tested three ways (example tests, fast-check property tests, golden snapshots), plus a MapLibre + React demo app with every example from the onboarding guide.
 
+**Live:** [demo](https://cowglow.github.io/maplibre-geojson-starter/) · [onboarding guides](https://cowglow.github.io/maplibre-geojson-starter/guides/) · [test report](https://cowglow.github.io/maplibre-geojson-starter/tests/) (from the build that deployed the site)
+
 ## Quick start
 
 Needs Node 20+ (tested on Node 22).
@@ -25,6 +27,7 @@ npm run dev       # demo app at http://localhost:5173
 | `FC_RUNS=2000 npm test` | Hunt harder: 2,000 fast-check runs per property (default 100) |
 | `FC_SEED=<seed> npm test` | Replay a fast-check failure exactly (seed is printed in the failure) |
 | `npm run docs:build` | Rebuild the onboarding PDFs in `docs/` (see below) |
+| `TEST_REPORT_DIR=dist/tests npm test` | Also write the HTML test report (what the deploy publishes at `/tests/`) |
 
 Versions used: maplibre-gl 6.13, react-map-gl 8.1, React 19, Vite 8, Vitest 5, fast-check 4, Turf 7, TypeScript 7.
 
