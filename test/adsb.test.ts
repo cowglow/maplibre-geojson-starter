@@ -102,8 +102,10 @@ describe('adsbTrackToFeature', () => {
     expect(f.properties.pointCount).toBe(c.length);
   });
 
+  // #region order-independence
   test.prop([arbTrackSamples])('is order-independent (sorted by timestamp)', (s) => {
     fc.pre(new Set(s.map((x) => x.t)).size === s.length); // unique timestamps
     expect(adsbTrackToFeature('a', [...s].reverse())).toEqual(adsbTrackToFeature('a', s));
   });
+  // #endregion
 });

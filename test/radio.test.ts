@@ -29,14 +29,19 @@ describe('coverageToFeature', () => {
     expect(() => coverageToFeature(munich, Number.NaN, 'x')).toThrow(RangeError);
   });
 
-  test.prop([arbSafePosition, arbRange])('contains its station and every vertex is ~rangeKm away', (station, rangeKm) => {
-    const f = coverageToFeature(station, rangeKm, 'x');
-    expectValidGeoJSON(f);
-    expect(booleanPointInPolygon(point(station), f)).toBe(true);
-    for (const v of f.geometry.coordinates[0]!) {
-      expect(distance(station, v, { units: 'kilometers' })).toBeCloseTo(rangeKm, 0);
-    }
-  });
+  // #region geometric
+  test.prop([arbSafePosition, arbRange])(
+    'contains its station and every vertex is ~rangeKm away',
+    (station, rangeKm) => {
+      const f = coverageToFeature(station, rangeKm, 'x');
+      expectValidGeoJSON(f);
+      expect(booleanPointInPolygon(point(station), f)).toBe(true);
+      for (const v of f.geometry.coordinates[0]!) {
+        expect(distance(station, v, { units: 'kilometers' })).toBeCloseTo(rangeKm, 0);
+      }
+    },
+  );
+  // #endregion
 
   // Documents a real-world edge case that fast-check surfaces quickly:
   it('keeps the ring continuous across the antimeridian (lng may exceed 180)', () => {

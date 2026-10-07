@@ -40,31 +40,40 @@ describe('hfPathToFeature', () => {
     expect(f.geometry.type).toBe('MultiLineString');
   });
 
+  // #region regression-endpoint
   // Regression pinned from a fast-check counterexample: Turf ended this path at +180 after
   // approaching from the west, which drew a line across the whole map.
   it('endpoint exactly on the antimeridian stays on the near side', () => {
     const f = hfPathToFeature(spot([-30, 10], [180, 0]))!;
     const c = lines(f.geometry)[0]!;
     expect(c[c.length - 1]![0]).toBe(-180);
-    for (let i = 1; i < c.length; i++) expect(Math.abs(c[i]![0]! - c[i - 1]![0]!)).toBeLessThan(180);
+    for (let i = 1; i < c.length; i++) {
+      expect(Math.abs(c[i]![0]! - c[i - 1]![0]!)).toBeLessThan(180);
+    }
   });
+  // #endregion
 
   it('returns null for identical or antipodal endpoints', () => {
     expect(hfPathToFeature(spot([10, 10], [10, 10]))).toBeNull();
     expect(hfPathToFeature(spot([0, 0], [180, 0]))).toBeNull();
   });
 
+  // #region antimeridian
   // fast-check found this limit: a great circle that passes over (or right next to) a pole flips
   // longitude by exactly 180° there. Those paths can't be drawn on Web Mercator (which stops at
   // ~85°) anyway, so the property covers paths that stay inside the drawable band.
-  test.prop([arbHfSpot])('never jumps across the map (no segment spans ≥ 180° of longitude)', (s) => {
+  test.prop([arbHfSpot])('never jumps across the map (no segment spans ≥ 180° of lng)', (s) => {
     const f = hfPathToFeature(s);
     if (!f) return;
     expectValidGeoJSON(f);
     fc.pre(lines(f.geometry).flat().every((p) => Math.abs(p[1]!) < 85));
-    for (const l of lines(f.geometry))
-      for (let i = 1; i < l.length; i++) expect(Math.abs(l[i]![0]! - l[i - 1]![0]!)).toBeLessThan(180);
+    for (const l of lines(f.geometry)) {
+      for (let i = 1; i < l.length; i++) {
+        expect(Math.abs(l[i]![0]! - l[i - 1]![0]!)).toBeLessThan(180);
+      }
+    }
   });
+  // #endregion
 
   test.prop([arbHfSpot])('path starts at tx and ends at rx', (s) => {
     const f = hfPathToFeature(s);
@@ -97,17 +106,24 @@ describe('splitAtAntimeridian', () => {
     ]);
   });
 
+  // #region regression-single-point
   it('drops single-point parts (Turf produced one for a near-antipodal path)', () => {
     const parts = splitAtAntimeridian([[-174.3, 0], [-177.15, 0], [180, 0]]);
     expect(parts).toEqual([[[-174.3, 0], [-177.15, 0], [-180, 0]]]);
   });
+  // #endregion
 
+  // #region regression-nan
   // Regression from a fast-check counterexample: an over-the-pole path has consecutive points
   // on the antimeridian; interpolating between them divided 0 by 0 and emitted null latitudes.
   it('never emits NaN for consecutive antimeridian points (over-the-pole path)', () => {
-    const parts = splitAtAntimeridian([[0, -89.03], [-180, -88.13], [-180, -85.29], [-180, -82.44]]);
-    for (const p of parts.flat()) expect(Number.isFinite(p[0]) && Number.isFinite(p[1])).toBe(true);
+    const overThePole = [[0, -89.03], [-180, -88.13], [-180, -85.29], [-180, -82.44]];
+    const parts = splitAtAntimeridian(overThePole);
+    for (const [lng, lat] of parts.flat()) {
+      expect(Number.isFinite(lng) && Number.isFinite(lat)).toBe(true);
+    }
   });
+  // #endregion
 
   test.prop([fc.array(fc.tuple(fc.oneof(fc.double({ min: -180, max: 180, noNaN: true }), fc.constantFrom(-180, 180, 0)), fc.double({ min: -85, max: 85, noNaN: true })), { minLength: 2, maxLength: 40 })])(
     'every part has ≥ 2 positions and no segment spans ≥ 180°',

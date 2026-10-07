@@ -52,7 +52,8 @@ export function bandForKHz(kHz: number): string {
 /**
  * -180 and 180 are the same meridian. Turf sometimes ends a path at +180 when the line
  * approaches from the west (or vice versa), which MapLibre draws as a line across the whole
- * map. Flip such points to the side of their previous neighbour. (Found by the fast-check tests.)
+ * map. Flip such points to the side of their previous neighbour.
+ * (Found by the fast-check tests.)
  */
 export function alignAntimeridian(line: Position[]): Position[] {
   const out: Position[] = [];
@@ -60,7 +61,8 @@ export function alignAntimeridian(line: Position[]): Position[] {
     if (Math.abs(p[0]!) !== 180) return void out.push(p);
     // Side of the previous point (already aligned, so a run of ±180 points stays on one side),
     // or, for a leading ±180 point, of the first point that isn't on the antimeridian.
-    const ref = out[out.length - 1]?.[0] ?? line.slice(i + 1).find((q) => Math.abs(q[0]!) !== 180)?.[0];
+    const ref =
+      out[out.length - 1]?.[0] ?? line.slice(i + 1).find((q) => Math.abs(q[0]!) !== 180)?.[0];
     out.push(ref === undefined ? p : [(Math.sign(ref) || 1) * 180, ...p.slice(1)]);
   });
   return out;

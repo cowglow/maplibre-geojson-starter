@@ -46,19 +46,26 @@ describe('aisToFeature: domain rules', () => {
 });
 
 describe('aisToFeature: properties (fast-check)', () => {
-  test.prop([arbAisReport])('always valid GeoJSON, or null exactly when there is no position', (m) => {
-    const f = aisToFeature(m);
-    if (!hasPosition(m)) { expect(f).toBeNull(); return; }
-    expect(f).not.toBeNull();
-    expectValidGeoJSON(f);
-  });
+  // #region validity
+  test.prop([arbAisReport])(
+    'always valid GeoJSON, or null exactly when there is no position',
+    (m) => {
+      const f = aisToFeature(m);
+      if (!hasPosition(m)) { expect(f).toBeNull(); return; }
+      expect(f).not.toBeNull();
+      expectValidGeoJSON(f);
+    },
+  );
+  // #endregion
 
+  // #region preservation
   test.prop([arbAisReport])('preserves the position in [lng, lat] order', (m) => {
     fc.pre(hasPosition(m));
     const [lng, lat] = aisToFeature(m)!.geometry.coordinates as [number, number];
     expect(lng).toBeCloseTo(m.lon, 5);
     expect(lat).toBeCloseTo(m.lat, 5);
   });
+  // #endregion
 
   test.prop([arbAisReport])('properties are flat primitives (MapLibre stringifies nested values)', (m) => {
     const f = aisToFeature(m);
@@ -75,15 +82,24 @@ describe('vesselsToCollection', () => {
     expect(fcol.features[0]!.geometry.coordinates[0]).toBe(9.9705);
   });
 
-  test.prop([fc.array(arbAisReport, { maxLength: 50 })])('one feature per MMSI that has a position', (reports) => {
+  // #region counting
+  const arbBatch = fc.array(arbAisReport, { maxLength: 50 });
+  test.prop([arbBatch])('one feature per MMSI that has a position', (reports) => {
     const expected = new Set(reports.filter(hasPosition).map((r) => r.mmsi)).size;
     const fcol = vesselsToCollection(reports);
     expect(fcol.features).toHaveLength(expected);
     expectValidGeoJSON(fcol);
   });
+  // #endregion
 
-  test.prop([fc.array(arbAisReport, { maxLength: 30 })])('order of input does not matter', (reports) => {
-    const ids = (r: AisPositionReport[]) => vesselsToCollection(r).features.map((f) => f.id).sort();
-    expect(ids([...reports].reverse())).toEqual(ids(reports));
-  });
+  // #region order-independence
+  const ids = (r: AisPositionReport[]) =>
+    vesselsToCollection(r).features.map((f) => f.id).sort();
+  test.prop([fc.array(arbAisReport, { maxLength: 30 })])(
+    'order of input does not matter',
+    (reports) => {
+      expect(ids([...reports].reverse())).toEqual(ids(reports));
+    },
+  );
+  // #endregion
 });

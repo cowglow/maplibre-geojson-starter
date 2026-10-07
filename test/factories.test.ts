@@ -30,9 +30,12 @@ describe('point', () => {
 });
 
 describe('round6', () => {
-  test.prop([fc.double({ noNaN: true, noDefaultInfinity: true, min: -1e6, max: 1e6 })])('is idempotent', (x) => {
+  // #region idempotence
+  const arbFinite = fc.double({ noNaN: true, noDefaultInfinity: true, min: -1e6, max: 1e6 });
+  test.prop([arbFinite])('is idempotent', (x) => {
     expect(round6(round6(x))).toBe(round6(x));
   });
+  // #endregion
 
   it('normalises -0 to 0', () => {
     expect(Object.is(round6(-0.0000001), 0)).toBe(true);
